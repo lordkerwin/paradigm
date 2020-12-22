@@ -18,9 +18,19 @@ class ShopController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $shops = Shop::orderBy('name', 'asc');
+        return ShopResource::collection(
+            $shops->simplePaginate()
+        )
+            ->additional([
+                'meta' => [
+                    'success' => true,
+                    'message' => 'shops loaded',
+                    'total' => $shops->count()
+                ]
+            ]);
     }
 
 

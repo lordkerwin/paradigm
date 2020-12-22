@@ -70,4 +70,29 @@ class ShopTest extends TestCase
             'domain' => 'safedomain.com'
         ]);
     }
+
+    public function test_can_get_paginated_list_of_shops()
+    {
+        $this->withoutExceptionHandling();
+        Sanctum::actingAs(
+            $this->admin,
+            ['*']
+        );
+        Shop::factory(50)->create();
+        $response = $this->json('get', route('shops.index'));
+        $response->assertStatus(200);
+        $response->assertJsonStructure([
+            'data' => [
+                '*' => [
+                    'id',
+                    'name',
+                    'uuid',
+                    'domain',
+                    'active',
+                    'created_at',
+                    'updated_at',
+                ]
+            ]
+        ]);
+    }
 }

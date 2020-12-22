@@ -23,8 +23,8 @@ class ShopFactory extends Factory
     {
         return [
             'active' => true,
-            'domain' => $this->faker->domainName,
-            'name' => $this->faker->words(2, true)
+            'domain' => $this->faker->word . '-' . $this->faker->word . '-' . $this->faker->domainName,
+            'name' => $this->faker->words(3, true)
         ];
     }
 }
