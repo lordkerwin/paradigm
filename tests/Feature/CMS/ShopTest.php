@@ -92,7 +92,39 @@ class ShopTest extends TestCase
                     'created_at',
                     'updated_at',
                 ]
+            ],
+            'meta' => [
+                'current_page',
+                'from',
+                'path',
+                'per_page',
+                'to',
+                'success',
+                'message',
             ]
+        ]);
+    }
+
+    public function test_can_get_a_single_shop()
+    {
+        $this->withoutExceptionHandling();
+        Sanctum::actingAs(
+            $this->admin,
+            ['*']
+        );
+        $shop = Shop::factory()->create();
+        $response = $this->json('get', route('shops.show', $shop->id));
+        $response->assertStatus(200);
+        $response->assertJsonStructure([
+            'data' => [
+                'id',
+                'name',
+                'uuid',
+                'domain',
+                'active',
+                'created_at',
+                'updated_at',
+            ],
         ]);
     }
 }

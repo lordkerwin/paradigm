@@ -1,12 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\CMS;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Resources\ShopResource;
 use App\Http\Transformers\ShopTransformer;
 use App\Models\Shop;
 use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -16,19 +20,17 @@ class ShopController extends BaseController
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return AnonymousResourceCollection
      */
-    public function index(Request $request)
+    public function index(): AnonymousResourceCollection
     {
-        $shops = Shop::orderBy('name', 'asc');
         return ShopResource::collection(
-            $shops->simplePaginate()
+            Shop::orderBy('name', 'asc')->simplePaginate()
         )
             ->additional([
                 'meta' => [
                     'success' => true,
-                    'message' => 'shops loaded',
-                    'total' => $shops->count()
+                    'message' => 'shops loaded'
                 ]
             ]);
     }
@@ -37,10 +39,10 @@ class ShopController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @return JsonResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|unique:shops|max:100',
@@ -69,22 +71,21 @@ class ShopController extends BaseController
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Shop  $shop
-     * @return \Illuminate\Http\Response
+     * @param  Shop  $shop
+     * @return JsonResponse
      */
-    public function show(Shop $shop)
+    public function show(Shop $shop): JsonResponse
     {
-        //
+        return $this->sendResponse(new ShopResource($shop), 'shop loaded');
     }
-
 
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Shop  $shop
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @param  Shop  $shop
+     * @return Response
      */
     public function update(Request $request, Shop $shop)
     {
@@ -115,8 +116,8 @@ class ShopController extends BaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Shop  $shop
-     * @return \Illuminate\Http\Response
+     * @param  Shop  $shop
+     * @return Response
      */
     public function destroy(Shop $shop)
     {
