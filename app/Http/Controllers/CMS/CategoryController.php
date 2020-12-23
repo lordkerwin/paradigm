@@ -25,7 +25,15 @@ class CategoryController extends BaseController
      */
     public function index(): AnonymousResourceCollection
     {
-        dd('fix this!!!');
+        return CategoryResource::collection(
+            Category::orderBy('name', 'asc')->simplePaginate()
+        )
+            ->additional([
+                'meta' => [
+                    'success' => true,
+                    'message' => 'categories loaded'
+                ]
+            ]);
     }
 
 
@@ -68,7 +76,7 @@ class CategoryController extends BaseController
      */
     public function show(Category $category): JsonResponse
     {
-        return $this->sendResponse(new CategoryResource($category), 'category loaded');
+        return $this->sendResponse($category->load('shops'), 'category loaded');
     }
 
 

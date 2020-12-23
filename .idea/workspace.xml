@@ -2,18 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2a107c4-2739-489e-bc35-f245cdd2bb5d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Transformers/CategoryTransformer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ShopController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CMS/ShopController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Shop.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Shop.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/CMS/ShopTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/CMS/ShopTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CMS/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CMS/CategoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/CategoryResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/CategoryResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/CMS/CategoryTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/CMS/CategoryTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -208,6 +208,8 @@
       <option name="presentableId" value="Default" />
       <updated>1608675040679</updated>
       <workItem from="1608675045638" duration="5455000" />
+      <workItem from="1608734606795" duration="827000" />
+      <workItem from="1608764863410" duration="458000" />
     </task>
     <servers />
   </component>
@@ -224,6 +226,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

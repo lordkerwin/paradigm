@@ -125,7 +125,6 @@ class CategoryTest extends TestCase
         );
         Category::factory(50)->create();
         $response = $this->json('get', route('categories.index'));
-        dd($response);
         $response->assertStatus(200);
         $response->assertJsonStructure([
             'data' => [
@@ -157,6 +156,8 @@ class CategoryTest extends TestCase
             ['*']
         );
         $category = Category::factory()->create();
+        $shop = Shop::factory()->create();
+        $category->shops()->attach($shop->id);
         $response = $this->json('get', route('categories.show', $category->id));
         $response->assertStatus(200);
         $response->assertJsonStructure([
@@ -166,6 +167,15 @@ class CategoryTest extends TestCase
                 'slug',
                 'created_at',
                 'updated_at',
+                'shops' => [
+                    '*' => [
+                        'id',
+                        'name',
+                        'uuid',
+                        'domain',
+                        'active',
+                    ]
+                ]
             ],
         ]);
     }
