@@ -23,4 +23,9 @@ class Shop extends Model
     {
         return $this->belongsToMany(Category::class)->withPivot('active')->withTimestamps();
     }
+
+    public function products(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Product::class);
+    }
 }
